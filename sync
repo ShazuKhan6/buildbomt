@@ -1,15 +1,15 @@
 #!/bin/bash
 sudo apt install wget
-MANIFEST=https://github.com/NezukoOS/manifest.git ##edit this
-BRANCH=eleven  ##edit this
+MANIFEST=https://github.com/PixelExperience/manifest.git
+BRANCH=eleven-plus
 
 mkdir -p /tmp/rom
 cd /tmp/rom
 
 # Repo init command, that -device,-mips,-darwin,-notdefault part will save you more time and storage to sync, add more according to your rom and choice.Optimization is welcomed! Let's make it quit, and with depth=1 so that no unnecessary things.
 repo init --no-repo-verify --depth=1 -u "$MANIFEST" -b "$BRANCH" -g default,-device,-mips,-darwin,-notdefault
-git config --global user.name "noobsauraj"
-git config --global user.email kumarsauraj24@gmail.com
+git config --global user.name "sushmit1"
+git config --global user.email sushmit718@gmail.com
 
 # Sync source with -q, no need unnecessary messages, you can remove -q if want! try with -j30 first, if fails, it will try again with -j8
 repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j$(nproc --all) || repo sync -c --no-clone-bundle --no-tags --optimized-fetch --prune --force-sync -j8
@@ -18,7 +18,9 @@ pwd
 ls
 
 ##delete these lines, and replace with your own lines of device sauce
-git clone https://github.com/Realme-G95-Series/proprietary_vendor_realme_RMX2151.git vendor/realme/RMX2151 
-git clone https://github.com/noobsauraj/device_realme_RMX2151.git device/realme/RMX2151
+git clone https://github.com/sushmit1/device_xiaomi_ysl -b aosp device/xiaomi/ysl
+git clone https://github.com/sushmit1/android_vendor_xiaomi_ysl vendor/xiaomi/ysl
+git clone https://github.com/DhruvChhura/kernel-perf kernel/xiaomi/ysl
+rm -rf vendor/codeaurora/telephony hardware/qcom-caf/msm8996/media hardware/qcom-caf/msm8996/audio hardware/qcom-caf/msm8996/display && git clone https://github.com/wave-project/vendor_codeaurora_telephony --depth=1 --single-branch vendor/codeaurora/telephony/ && git clone --single-branch https://github.com/Jabiyeff/android_hardware_qcom_media hardware/qcom-caf/msm8996/media && git clone --single-branch https://github.com/Jabiyeff/android_hardware_qcom_display hardware/qcom-caf/msm8996/display &&  git clone https://github.com/LineageOS/android_hardware_qcom_audio --single-branch -b lineage-18.1-caf-msm8996 hardware/qcom-caf/msm8996/audio
 
 cd /tmp/rom

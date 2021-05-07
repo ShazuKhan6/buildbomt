@@ -2,13 +2,9 @@
 cd /tmp/rom
 rm -rf .repo
 
-cd external/selinux 
-curl -L http://ix.io/2FhM > sasta.patch 
-git am sasta.patch 
-cd /tmp/rom
 
 . build/envsetup.sh
-lunch aosp_RMX2151-userdebug ##edit this
+lunch aosp_ysl-userdebug
 export CCACHE_DIR=/tmp/ccache  ##use additional flags if you need(optional)
 export CCACHE_EXEC=$(which ccache)
 export USE_CCACHE=1
@@ -28,7 +24,7 @@ make_metalava(){
 
 make_rom(){
 	make bacon -j16
-	zip=$(up out/target/product/RMX2151/*zip) ##edit this change from miatoll---> /<your device codename>
+	zip=$(up out/target/product/ysl/*zip) ##edit this change from miatoll---> /<your device codename>
 	echo " "
 	echo "$zip"
 }
